@@ -1,6 +1,6 @@
 import grpc
 from concurrent import futures
-from server_py.proto.gcn import gcn_pb2_grpc, gcn_pb2
+from proto.gcn import gcn_pb2_grpc, gcn_pb2
 
 import torch
 from torch_geometric.data import Data
