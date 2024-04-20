@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+message Node {
+  string id = 1;
+  repeated float features = 2;
+}
+
+message Edge {
+  string source_id = 1;
+  string target_id = 2;
+}
+
+message GraphData {
+  repeated Node nodes = 1;
+  repeated Edge edges = 2;
+}
+
+message ModelParams {
+  int32 input_dims = 1;
+  int32 hidden_dims = 2;
+  int32 output_dims = 3;
+  int32 iterations = 4;
+}
+
+message HistoryData {
+  repeated YearData year_data = 1;
+}
+
+message YearData {
+  int32 year = 1;
+  repeated PlaceData place_data = 2;
+}
+
+message PlaceData {
+  string place = 1;
+  double longitude = 2;
+  double latitude = 3;
+  int32 total_people = 4;
+}
+
+message GCNRequest {
+  GraphData graph = 1;
+  ModelParams params = 2;
+  HistoryData history_data = 3;
+}
+
+message GCNResult {
+  map<string, float> node_scores = 1;
+  string html = 2;
+}
+
+service GCNService {
+  rpc ProcessGCN (GCNRequest) returns (GCNResult);
+}
