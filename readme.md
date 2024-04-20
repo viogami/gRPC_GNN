@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 --> 打开main.ipynb可看到全部思路和源码
 
---> 地图绘制和html生成使用pyecharts库，请多关注官方文档
+--> 地图绘制和html生成使用pyecharts库，请多关注[官方文档](https://pyecharts.org/#/zh-cn/intro)
 
 
 ## gRPC文件说明
@@ -25,6 +25,8 @@ pip install -r requirements.txt
 
 返回数据中的html为string类型，但定义了尚未使用，还是通过读取html文件的方式呈现。
 
+php和python的grpc实现的更多细节可以参考[我的博客](http://viogami.me/index.php/archives/174/)
+
 ## php客户端
 作用：
 - 从数据库读取数据
@@ -33,7 +35,7 @@ pip install -r requirements.txt
 
 注意点：
 
-- 需要进行composer安装必要依赖
+- 需要进行composer安装必要依赖，进而生成vendor文件夹
     ```
     composer init
     composer install
@@ -41,7 +43,7 @@ pip install -r requirements.txt
 
 - 如果你手动生成grpc文件，可能需要修改生成的`GCNServiceClient.php`文件，删除上面的namespace一行。
 
-- map.php是客户端入口,需要手动添加数据库名称和密码，用于访问数据库
+- `map.php`是客户端入口,需要**手动添加数据库名称和密码**，用于访问数据库
 
 ## py服务端
 作用：
@@ -54,14 +56,15 @@ pip install -r requirements.txt
 注意：
  - 如果你手动生成grpc文件，可能需要对`gcn_pb2_grpc.py`文件的相对导入做修改，具体为：`from . import gcn_pb2 as gcn__pb2`
  - 需要将`outputHTML.py`文件中的`china.json`的读取和`map.html`生成的路径地址改为你自己的位置
-
- - gcn_server.py是程序入口。
+ - 应该将该文件夹独立出去，单独部署，便于依赖维护。
+ - `gcn_server.py`是程序入口。
 
 
 ## 文件夹说明
 - client_php : grpc客户端，使用php
 - server_py : grpc服务端，使用python，需要安装文件夹下的依赖
-- data: 必要的数据存放文件夹
+- data: 存放必要的数据文件，其中GeoMapData.zip为地图文件，来源于：[GeoMapData_CN](https://github.com/lyhmyd1211/GeoMapData_CN)
 - sample-pyecharts: pyecharts的演示文件，因为html的绘制和地图可视化均依赖该库，需要多查看官方文档，以实现更好的自定义效果。
 - main.ipynb ： jupyter笔记本，实现热度预测和可视化的全部代码。
+- model.py: gnn相关模型代码，未使用，仅作为参考
 - tab_base.html： 生成的成果html
