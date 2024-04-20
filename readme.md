@@ -67,4 +67,3 @@ php和python的grpc实现的更多细节可以参考[我的博客](http://viogam
 - sample-pyecharts: pyecharts的演示文件，因为html的绘制和地图可视化均依赖该库，需要多查看官方文档，以实现更好的自定义效果。
 - main.ipynb ： jupyter笔记本，实现热度预测和可视化的全部代码。
 - model.py: gnn相关模型代码，未使用，仅作为参考
-- tab_base.html： 生成的成果html
