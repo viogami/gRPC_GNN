@@ -3,24 +3,28 @@ require_once 'vendor/autoload.php';
 require 'build_graph.php';
 require 'grpc.php';
 
-
 // 从数据库创建数据，参数为years年份数组,默认为2015-2019,并将数据保存为json
 function fetch_data($years)
 {
-    // 创建PDO实例
+    // 数据库连接
     $host = 'localhost';
     $db   = 'kqdb';
     $user = 'kqdb';
     $pass = 'your-password';
     $charset = 'utf8';
-    // 数据库连接
+
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
     $opt = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
     ];
-    $pdo = new PDO($dsn, $user, $pass, $opt);
+    // 创建PDO实例
+    try {
+        $pdo = new PDO($dsn, $user, $pass, $opt);
+    } catch (PDOException $e) {
+        die('数据库连接失败: ' . $e->getMessage());
+    }
 
     // 从ycdata表获取数据
     $stmt = $pdo->query('SELECT * FROM ycdata');
