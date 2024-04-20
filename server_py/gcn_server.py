@@ -6,6 +6,7 @@ import torch
 from torch_geometric.data import Data
 import gcn_model as m
 import outputHTML 
+from datetime import datetime
 
 class GCNServicer(gcn_pb2_grpc.GCNServiceServicer):
     # 将图数据转换为 PyTorch Geometric 的 Data 对象
@@ -29,7 +30,7 @@ class GCNServicer(gcn_pb2_grpc.GCNServiceServicer):
     
     # 消息处理函数
     def Msg_handle(self, request, context):
-        print(f"Received a request,from "+str(context.peer()))
+        print(f"time:{datetime.now()}--Received a request, from {context.peer()}")
 
         if not request.graph.nodes:
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
