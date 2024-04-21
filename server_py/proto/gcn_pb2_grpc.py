@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import gcn_pb2 as gcn__pb2
+from . import gcn_pb2 as gcn__pb2
 
 
 class GCNServiceStub(object):

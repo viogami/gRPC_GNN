@@ -6,7 +6,7 @@
     "autoload": {
         "psr-4": {
           "GPBMetadata\\": "protoc/GPBMetadata/",
-          "protoc\\": "protoc/"
+          "GCN\\": "protoc/GCN/"
         }
       }
 }

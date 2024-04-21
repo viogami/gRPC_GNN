@@ -1,22 +1,22 @@
 <?php
 require dirname(__FILE__).'/vendor/autoload.php'; // 引入 gRPC PHP 扩展的自动加载文件
-// 引入包含 GraphData 类的文件
-require 'protoc/GCNRequest.php';
-require 'protoc/GraphData.php'; 
-require 'protoc/ModelParams.php';
-require 'protoc/Node.php'; 
-require 'protoc/Edge.php'; 
-require 'protoc/HistoryData.php';
-require 'protoc/YearData.php';
-require 'protoc/PlaceData.php';
-require 'protoc/GCNResult.php'; 
-require 'protoc/GCNServiceClient.php';
+
+// 导入命名空间
+use GCN\GCNRequest;
+use GCN\GraphData;
+use GCN\ModelParams;
+use GCN\Node;
+use GCN\Edge;
+use GCN\HistoryData;
+use GCN\YearData;
+use GCN\PlaceData;
+use GCN\GCNServiceClient;
 
 // 进行grpc请求，获取gcn处理后的数据，返回json字符串
 // 参数为years年份数组,默认为2015-2019
 function GCN_request($years)
 {
-    $client = new GCNServiceClient('localhost:9999', [
+    $client = new GCNServiceClient('viogami.me:9999', [
         'credentials' => \Grpc\ChannelCredentials::createInsecure(),
     ]);
     

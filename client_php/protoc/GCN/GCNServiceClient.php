@@ -1,6 +1,7 @@
 <?php
 // GENERATED CODE -- DO NOT EDIT!
 
+namespace GCN;
 
 /**
  */
@@ -16,15 +17,15 @@ class GCNServiceClient extends \Grpc\BaseStub {
     }
 
     /**
-     * @param \GCNRequest $argument input argument
+     * @param \GCN\GCNRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ProcessGCN(\GCNRequest $argument,
+    public function ProcessGCN(\GCN\GCNRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/GCNService/ProcessGCN',
         $argument,
-        ['\GCNResult', 'decode'],
+        ['\GCN\GCNResult', 'decode'],
         $metadata, $options);
     }
 
