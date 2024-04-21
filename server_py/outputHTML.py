@@ -10,7 +10,7 @@ from shapely.geometry import Point
 # 计算每个省的热度的总和的函数
 def HotnessSum_province(year_data):
     # 从自定义的路径读取china.json文件
-    china = gpd.read_file('../../wwwroot/gcn_grpc/data/china.json')
+    china = gpd.read_file('./data/china.json')
 
     china['geometry'] = china['geometry'].buffer(0)
 
