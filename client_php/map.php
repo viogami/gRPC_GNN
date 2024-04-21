@@ -11,7 +11,7 @@ function fetch_data($years)
     $host = 'localhost';
     $db   = 'kqdb';
     $user = 'kqdb';
-    $pass = 'violet81920';
+    $pass = 'yourpassword';
     $charset = 'utf8';
     // 数据库连接
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -112,6 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // 显示html页面
+// 注意，该文件由grpc的python服务端生成，不是由php读取grpc回复生成
+// 如果需要，可以直接访问http://kunqu.viogami.me/kunqu/map.html
 readfile('map.html');
 
 ?>
