@@ -16,9 +16,17 @@ use GCN\GCNServiceClient;
 // 参数为years年份数组,默认为2015-2019
 function GCN_request($years)
 {
-    $client = new GCNServiceClient('viogami.me:9999', [
-        'credentials' => \Grpc\ChannelCredentials::createInsecure(),
-    ]);
+    if (!extension_loaded('grpc')){
+        die("grpc extension don`t find from php.ini! Check the .ini file or grpc extension.");
+    }
+    try {
+        $client = new GCNServiceClient('viogami.me:9999', [
+            'credentials' => \Grpc\ChannelCredentials::createInsecure(),
+        ]);
+    } catch (\Throwable $e) {
+        // 打印错误信息
+        die("Error connecting to gRPC server: " . $e->getMessage() . "\n");
+    }
     
     // 创建一个实例的图数据
     $G_example = new GraphData();
@@ -72,9 +80,8 @@ function GCN_request($years)
     // 发送请求并接收响应
     list($response, $status) = $client->ProcessGCN($request)->wait();
     if ($status->code !== Grpc\STATUS_OK) {
-    // gRPC 请求出错
-    throw new Exception('Error calling grpc server -> ProcessGraph: ' . $status->details);
-    exit(1);
+        // gRPC 请求出错
+        die('Error calling grpc server -> ProcessGraph: ' . $status->details);
     }
     
     $NodeScores = [];

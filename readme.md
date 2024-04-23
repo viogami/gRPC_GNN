@@ -35,6 +35,8 @@ php和python的grpc实现的更多细节可以参考[我的博客](http://viogam
 
 注意点：
 
+- 首先要根据目标部署服务器的php版本安装相应的grpc拓展，可以编译好静态的grpc.so文件，在php.ini中添加该拓展。composer安装的grpc依赖底层还是调用该拓展。
+
 - 需要进行composer安装必要依赖，进而生成vendor文件夹
     ```
     composer init
