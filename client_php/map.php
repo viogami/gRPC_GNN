@@ -95,9 +95,13 @@ if (!file_exists('data/node.json') || !file_exists('data/edge.json') || !file_ex
 
 // 如果没有map的html，则通过grpc调用生成
 if (!file_exists('map.html')) {
-    // 调用gRPC服务
     $res = GCN_request($years);
-    file_put_contents('data/res.json', $res);
+    $nodeScores = $res['nodeScores'];
+    $html = $res['html'];
+
+    // 保存json和html
+    file_put_contents('data/res.json', $nodeScores);
+    file_put_contents('map.html', $html);
 }
 
 // 如果收到POST请求(即按下了更新界面)，调用gRPC服务
@@ -105,7 +109,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     fetch_data($years);
 
     $res = GCN_request($years);
-    file_put_contents('data/res.json', $res);
+    $nodeScores = $res['nodeScores'];
+    $html = $res['html'];
+
+    // 保存json和html
+    file_put_contents('data/res.json', $nodeScores);
+    file_put_contents('map.html', $html);
 
     // 刷新页面
     header('Location: map.php');

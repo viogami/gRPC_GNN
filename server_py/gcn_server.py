@@ -85,7 +85,11 @@ class GCNServicer(gcn_pb2_grpc.GCNServiceServicer):
         # 将预测结果转换为字典
         result = {node_id: round(feature.item()) for node_id, feature in zip(self.ids, output)}
 
-        return gcn_pb2.GCNResult(node_scores=result)
+        # 将html文件转换为字符串作为返回
+        with open('../../wwwroot/KunquHot/web/kunqu/map.html', 'r', encoding='utf-8') as f:
+            html = f.read()
+
+        return gcn_pb2.GCNResult(node_scores=result, html=html)
     
     # 创建 gRPC 服务端
     def server(self):

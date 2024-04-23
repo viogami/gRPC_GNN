@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 把图数据和模型参数封装为请求数据。
 
-返回数据中的html为string类型，但定义了尚未使用，还是通过读取html文件的方式呈现。
+返回数据中的html为string类型，返回html过大可能超时，目前还未解决数据过多，超时问题。并且该后端部署在国外服务器上，延迟堪忧。
 
 php和python的grpc实现的更多细节可以参考[我的博客](http://viogami.me/index.php/archives/174/)
 

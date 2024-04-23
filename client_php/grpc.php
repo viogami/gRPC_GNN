@@ -88,7 +88,12 @@ function GCN_request($years)
     foreach ($response->getNodeScores() as $key => $value) {
         $NodeScores[$key] = $value;
     }
-    return json_encode($NodeScores);
+
+    // 获取HTML字符串
+    $html = $response->getHtml();
+
+    // 存储返回的string为html
+    return ['nodeScores' => json_encode($NodeScores), 'html' => $html];
 }
 
 
