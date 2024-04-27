@@ -86,7 +86,7 @@ class GCNServicer(gcn_pb2_grpc.GCNServiceServicer):
         result = {node_id: round(feature.item()) for node_id, feature in zip(self.ids, output)}
 
         # 将html文件转换为字符串作为返回
-        with open('../../wwwroot/KunquHot/web/kunqu/map.html', 'r', encoding='utf-8') as f:
+        with open('./data/map.html', 'r', encoding='utf-8') as f:
             html = f.read()
 
         return gcn_pb2.GCNResult(node_scores=result, html=html)

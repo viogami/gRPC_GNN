@@ -4,3 +4,6 @@ others
 data/kunqu
 client_php/vendor
 client_php/map.html
+web
+docker-compose.yml
+oyywp

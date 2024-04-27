@@ -100,4 +100,4 @@ def output_html(history_data):
     tab.add(tl1, "各省昆曲热度")
     tab.add(tl2, "各大昆曲剧院热度")
     # 修改为希望map.html文件导出到的路径
-    tab.render("../../wwwroot/KunquHot/web/kunqu/map.html")
+    tab.render("./data/map.html")
